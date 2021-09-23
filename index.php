@@ -1,5 +1,5 @@
 <?php
 
-include_once("ApiCEP(1).html");
+include_once("ApiCEP.html");
 
 ?>
