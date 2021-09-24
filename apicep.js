@@ -7,13 +7,17 @@ function buscaCep(url,body){
     request.onload = function(){
         console.log(this.responseText)
        result = JSON.parse(this.responseText)
-            montaHtmlSucesso(result);
+       if(request.status== 200){
+        montaHtmlSucesso(result);    
+    }else{
+        montaHtmlErro(result)
+    }
        }
     return request.responseText
    }
-
+    //https://apicep01.herokuapp.com/cep
    function enviarCep(){
-       let url ="https://apicep01.herokuapp.com/cep"
+       let url ="https://api-do-cep.herokuapp.com/cep"
        let cep = document.getElementById("cep").value
        body = {
            "cep": cep
@@ -23,18 +27,19 @@ function buscaCep(url,body){
    function montaHtmlSucesso(result){
        let html = "<h2> Resultado encontrado:  </h2>";
         html += "<ul>";
-        html += "<li><span style= 'fontWeight:bold'>CEP:</span> " + result.cep + "</li>"
-        html += "<li><span style= 'fontWeight:bold'>CEP:</span> " + result.logradouro + "</li>"
-        html += "<li><span style= 'fontWeight:bold'>CEP:</span> " + result.localidade + "</li>"
-        html += "<li><span style= 'fontWeight:bold'>CEP:</span> " + result.bairro + "</li>"
+        html += "<li><span style= 'fontWeight:bold'><strong>CEP:</strong></span> " + result.cep + "</li>"
+        html += "<li><span style= 'fontWeight:bold'><strong>Logradouro:</strong></span> " + result.logradouro + "</li>"
+        html += "<li><span style= 'fontWeight:bold'><strong>Localidade:</strong></span> " + result.localidade + "</li>"
+        html += "<li><span style= 'fontWeight:bold'><strong> Bairro: </strong></span> " + result.bairro + "</li>"
         document.getElementById('resultado').innerHTML = html;
     }
 
     function montaHtmlErro(result){
-        let html = "<h2> Resultado encontrado:  </h2>";
-        console.log(result)
+        let html = "<h2> Resultado não encontrado:  </h2>";
         html += "<ul>";
-        html += "<li><span style= 'fontWeight:bold'>Erro 400: CEP invÃ¡lido </span> " + result.erro + "</li>"
+        html += "<h3><span style= 'fontWeight:bold'>Erro Cep invalido</span></h3>"
+        document.getElementById('resultado').innerHTML = html; 
+        alert("Formato de CEP inválido.");
     }
 
    window.onload = function(){
