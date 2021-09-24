@@ -13,7 +13,7 @@ function buscaCep(url,body){
    }
 
    function enviarCep(){
-       let url ="https://apicep2.herokuapp.com/cep"
+       let url ="https://apicep01.herokuapp.com/cep"
        let cep = document.getElementById("cep").value
        body = {
            "cep": cep
