@@ -47,24 +47,12 @@ function buscaCep(url,body){
     }
 
     function montaHtmlErro(result){
-        if(result.cep === null){
-            let html = "<h2> Resultado não encontrado:  </h2>";
-            html += "<h3><span style= 'fontWeight:bold'><b>Erro! Cep nulo ou invalido</b></span></h3>"
-            document.getElementById('resultado').innerHTML = html; 
-           }else{
-        let html = "<h2> Resultado não encontrado:  </h2>";
+        let html = "<h2> Resultado não encontrado: </h2>";
         html += "<ul>";
+        html += "<li><span style= 'fontWeight:bold'><b>Erro:</b></span> " + result.mensagem + "</li>"
         html += "<h3><span style= 'fontWeight:bold'>Erro Cep invalido</span></h3>"
         document.getElementById('resultado').innerHTML = html; 
-           }
 
-    }
-
-    function montaHtmlNulo(result){
-        let html = "<h2>Digite um CEP valido</h2>";
-        html += "<ul>";
-        html += "<h3><span style= 'fontWeight:bold'>Ops o Cep está nulo!!</span></h3>"
-        document.getElementById('resultado').innerHTML = html; 
     }
 
    window.onload = function(){
