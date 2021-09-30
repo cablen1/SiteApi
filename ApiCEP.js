@@ -1,3 +1,4 @@
+
 function buscaCep(url,body){
     let request = new XMLHttpRequest()
     let result  = ""
@@ -5,11 +6,13 @@ function buscaCep(url,body){
     request.setRequestHeader("Content-type","application/json")
     request.send(JSON.stringify(body))
     request.onload = function(){
-            if(request.status== 200){
-                montaHtmlSucesso(result);    
-            }else{
-                montaHtmlErro(result)
-            }
+        console.log(this.responseText)
+        result = JSON.parse(this.responseText)
+        if(request.status== 200){
+             montaHtmlSucesso(result);    
+        }else{
+             montaHtmlErro(result)
+        }
         }
 
     return request.responseText
@@ -28,10 +31,10 @@ function buscaCep(url,body){
         html += "<h3 style='margin-left: 20px'><span style= 'fontWeight:bold'><b>CEP não encontrado!</b></span></h3>"
         document.getElementById('resultado').innerHTML = html; 
        }else{
-            let html = "<h2> Resultado encontrado:  </h2>";
+            let html = "<h2 style='margin-left: 10px'> <NBSP&;>Resultado encontrado:  </h2>";
             html += "<ul>";
             html += "<li><span style= 'fontWeight:bold'><b>CEP:</b></span> " + result.cep + "</li>"
-            html += "<li><span style= 'fontWeight:bold'><b>Logradouro:</b></span> " + result.logradouro + "</li>"
+            html += "<li><span style= 'fontWeight:bold'><b>Lougradouro:</b></span> " + result.logradouro + "</li>"
             html += "<li><span style= 'fontWeight:bold'><b>Localidade:</b></span> " + result.localidade + "</li>"
             html += "<li><span style= 'fontWeight:bold'><b>Bairro:</b></span> " + result.bairro + "</li>"
          document.getElementById('resultado').innerHTML = html; 
@@ -41,10 +44,12 @@ function buscaCep(url,body){
     }
 
     function montaHtmlErro(result){
-        let html = "<h2> Resultado não encontrado: </h2>";
+       
+        let html = "<h2 style='margin-left: 10px'> <NBSP&;> Resultado não encontrado:  </h2>";
         html += "<ul>";
-        html += "<li><span style= 'fontWeight:bold'><b></b></span> " + result.mensagem + "</li>"
+        html += "<h3><span style= 'fontWeight:bold'></span> " + result.mensagem + "</h3>"
         document.getElementById('resultado').innerHTML = html; 
+           
 
     }
 
