@@ -5,10 +5,6 @@ function buscaCep(url,body){
     request.setRequestHeader("Content-type","application/json")
     request.send(JSON.stringify(body))
     request.onload = function(){
-        result = JSON.parse(this.responseText)
-        if(request ==null||request ==""){
-            montaHtmlNulo(result)
-        }else{
             if(request.status== 200){
                 montaHtmlSucesso(result);    
             }else{
@@ -18,7 +14,6 @@ function buscaCep(url,body){
 
     return request.responseText
    }
-}
    function enviarCep(){
        let url ="https://apicep01.herokuapp.com/cep"
        let cep = document.getElementById("cep").value
@@ -29,8 +24,8 @@ function buscaCep(url,body){
    }
    function montaHtmlSucesso(result){
        if(result.cep === undefined){
-        let html = "<h2> Resultado não encontrado:  </h2>";
-        html += "<h3><span style= 'fontWeight:bold'><b>Erro! Cep encontrado</b></span></h3>"
+        let html = "<h2 style='margin-left: 10px'> <NBSP&;>Resultado não encontrado:  </h2>";
+        html += "<h3 style='margin-left: 20px'><span style= 'fontWeight:bold'><b>CEP não encontrado!</b></span></h3>"
         document.getElementById('resultado').innerHTML = html; 
        }else{
             let html = "<h2> Resultado encontrado:  </h2>";
