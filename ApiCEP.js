@@ -5,7 +5,6 @@ function buscaCep(url,body){
     request.setRequestHeader("Content-type","application/json")
     request.send(JSON.stringify(body))
     request.onload = function(){
-        console.log(this.responseText)
         result = JSON.parse(this.responseText)
         if(request ==null||request ==""){
             montaHtmlNulo(result)
@@ -37,7 +36,7 @@ function buscaCep(url,body){
             let html = "<h2> Resultado encontrado:  </h2>";
             html += "<ul>";
             html += "<li><span style= 'fontWeight:bold'><b>CEP:</b></span> " + result.cep + "</li>"
-            html += "<li><span style= 'fontWeight:bold'><b>Lougradouro:</b></span> " + result.logradouro + "</li>"
+            html += "<li><span style= 'fontWeight:bold'><b>Logradouro:</b></span> " + result.logradouro + "</li>"
             html += "<li><span style= 'fontWeight:bold'><b>Localidade:</b></span> " + result.localidade + "</li>"
             html += "<li><span style= 'fontWeight:bold'><b>Bairro:</b></span> " + result.bairro + "</li>"
          document.getElementById('resultado').innerHTML = html; 
@@ -49,8 +48,7 @@ function buscaCep(url,body){
     function montaHtmlErro(result){
         let html = "<h2> Resultado não encontrado: </h2>";
         html += "<ul>";
-        html += "<li><span style= 'fontWeight:bold'><b>Erro:</b></span> " + result.mensagem + "</li>"
-        html += "<h3><span style= 'fontWeight:bold'>Erro Cep invalido</span></h3>"
+        html += "<li><span style= 'fontWeight:bold'><b></b></span> " + result.mensagem + "</li>"
         document.getElementById('resultado').innerHTML = html; 
 
     }
